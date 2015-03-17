@@ -6,7 +6,11 @@ import orbotix.view.connection.SpheroConnectionView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +22,8 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
 	static MainActivity mainactivity;
+	private boolean mSettingsActtivityShowing;
+	SharedPreferences settings;
 	ImageView imageView;
 	Sphero mRobot;
 	Display display;
@@ -37,9 +43,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		findViewById(R.id.back_layout).requestFocus();
 		
 		mainactivity = this;
 		velocityView = (TextView)findViewById(R.id.speedView);
+		mSettingsActtivityShowing = false;
+		settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		
 		imageView = (ImageView)findViewById(R.id.imageView1);
 		seekBarDrive = (SeekBar)findViewById(R.id.seekBarDrive);
@@ -126,6 +135,15 @@ public class MainActivity extends Activity {
 				} catch (Exception e) {
 					connectionMessageBox();
 				}
+	        	return true;
+	        case R.id.action_settings:
+	        	try {
+	        		mSettingsActtivityShowing = true;
+		        	Intent settingactivity = new Intent(this, SettingsActivity.class);
+		        	startActivity(settingactivity);
+				} catch (Exception e) {
+					connectionMessageBox();
+				}
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
@@ -149,13 +167,22 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		// Refresh list of Spheros
-		mSpheroConnectionView.startDiscovery();
+		if(mSettingsActtivityShowing)
+			mSettingsActtivityShowing=false;
+		if(mRobot == null)
+			mSpheroConnectionView.startDiscovery();
+		if(mRobot!=null)
+			refreshPrefValues();
 	}
 
 	/** Called when the user presses the back or home button */
 	@Override
 	protected void onPause() {
 		super.onPause();
+		
+		if (mSettingsActtivityShowing) 
+			return;
+		
 		if (mRobot != null) {
 			mRobot.getCollisionControl().stopDetection();
 			// Remove async data listener
@@ -169,6 +196,13 @@ public class MainActivity extends Activity {
 	public static MainActivity getInstance(){
 		   return   mainactivity;
 		 } 
+	
+	private void refreshPrefValues()
+	{
+		draw.radius = Integer.parseInt(settings.getString("stroke_width", "40"));
+		draw.paint.setARGB(ColorPicker.getAlpha(), ColorPicker.getRed(), ColorPicker.getGreen(), ColorPicker.getBlue());
+		draw.ClearBitmap();
+	}
 	
 	
 }

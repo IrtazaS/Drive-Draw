@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--
+         NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it.
+    -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <ListPreference
+        android:defaultValue="40"
+        android:dialogTitle="Set stroke width"
+        android:entries="@array/pref_stroke_width_values"
+        android:entryValues="@array/pref_stroke_width_values"
+        android:key="stroke_width"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_stroke_width" />
+
+    <!--
+         This preference simply launches an intent when selected. Use this UI sparingly, per
+         design guidelines.
+    -->
+    <Preference android:title="@string/pref_stroke_color" >
+        <intent android:action="android.intent.action.Color_Setting" />
+    </Preference>
+
+</PreferenceScreen>

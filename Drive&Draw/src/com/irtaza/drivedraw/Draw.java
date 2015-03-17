@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import orbotix.robot.base.ConfigureLocatorCommand;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,6 +14,8 @@ import android.graphics.Paint;
 import android.graphics.Bitmap.Config;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class Draw {
 	
@@ -22,15 +25,18 @@ public class Draw {
 	static float mPositionX, mPositionY;
 	final int displayWidth, displayHeight;
 	int scaleddisplayWidth, scaleddisplayHeight;
-	final int radius;
+	int radius;
+	int alpha;
+	Paint paint;
 	HashMap<Float, Float> positionMap;
 	ArrayList<PointF> coordinateList;
 	static PointF drawingPoint;
 	public Draw()
 	{
 		scaledbitmap = null;
-		radius = 40;
-		
+		radius = Integer.parseInt(MainActivity.getInstance().settings.getString("stroke_width", "40"));
+
+		alpha = 110;
 		displayWidth = MainActivity.getInstance().displayWidth;
 		displayHeight = MainActivity.getInstance().displayHeight;
 		scaleddisplayWidth = displayWidth;
@@ -57,11 +63,12 @@ public class Draw {
 	}
 	public PointF DrawMap()
 	{
-		Paint paint = new Paint();
-		paint.setColor(Color.GRAY);
+		paint = new Paint();
+		paint.setARGB(ColorPicker.getAlpha(), ColorPicker.getRed(), ColorPicker.getGreen(), ColorPicker.getBlue());
 		drawingPoint = new PointF();
 		float drawPositionX = (LocationData.mPositionX) + (displayWidth/2);
 		float drawPositionY = (LocationData.mPositionY) + (displayHeight/2);
+		Log.i("DrawingParameter: ", "drawPositionX: " +  drawPositionX + "drawPositionY: "+drawPositionY + "scaleddisplaywidth: "+scaleddisplayWidth + "scaleddsplayheight: " + scaleddisplayHeight);
 		drawingPoint.x = drawPositionX;
 		drawingPoint.y = drawPositionY;
 		canvas.drawCircle(drawPositionX, drawPositionY, radius, paint);
@@ -74,7 +81,6 @@ public class Draw {
 		}
 		if(drawPositionX >= scaleddisplayWidth || drawPositionY >= scaleddisplayHeight)
     		DrawScaledBitmap();
-		
 		return drawingPoint;
 	}
 	
@@ -89,8 +95,7 @@ public class Draw {
 	{
 		scaleddisplayWidth = scaleddisplayWidth + 600;
 		scaleddisplayHeight = scaleddisplayHeight + 600;
-		Paint paint = new Paint();
-		paint.setColor(Color.GRAY);
+		paint.setARGB(ColorPicker.getAlpha(), ColorPicker.getRed(), ColorPicker.getGreen(), ColorPicker.getBlue());
 		scaledbitmap = Bitmap.createBitmap(scaleddisplayWidth, scaleddisplayHeight, Config.ARGB_8888);
 		MainActivity.getInstance().imageView.setImageBitmap(scaledbitmap);
 		canvas.setBitmap(scaledbitmap);
