@@ -35,8 +35,6 @@
         android:id="@+id/seekBarColorGreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/seekBarColorRed"
-        android:layout_below="@+id/seekBarColorRed"
         android:layout_marginTop="15dp"
         android:max="255" />
 
@@ -69,18 +67,18 @@
         android:layout_height="wrap_content" 
         android:layout_marginTop="15dp"
         android:max="255"/>
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/buttonColor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:clickable="false" />
 
-    <Button
-        android:id="@+id/buttonSleep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onSleep"
-        android:text="Sleep" />
+</RelativeLayout>
 
 </LinearLayout>

@@ -28,7 +28,6 @@ public class Draw {
 	int radius;
 	int alpha;
 	Paint paint;
-	HashMap<Float, Float> positionMap;
 	ArrayList<PointF> coordinateList;
 	static PointF drawingPoint;
 	public Draw()
@@ -42,7 +41,6 @@ public class Draw {
 		scaleddisplayWidth = displayWidth;
 		scaleddisplayHeight = displayHeight;
 		
-		positionMap = new HashMap<Float, Float>();
 		coordinateList = new ArrayList<PointF>();
 		
 		bitmap = Bitmap.createBitmap(displayWidth, displayHeight, Bitmap.Config.ARGB_8888);
@@ -75,11 +73,10 @@ public class Draw {
 
 		if(LocationData.lastPositionX != LocationData.mPositionX || LocationData.lastPositionY != LocationData.mPositionY)
 		{
-			//positionMap.put(drawPositionX, drawPositionY);
 			PointF coordinates = new PointF(drawPositionX, drawPositionY);
 			coordinateList.add(coordinates);
 		}
-		if(drawPositionX >= scaleddisplayWidth || drawPositionY >= scaleddisplayHeight)
+		if(drawPositionX >= scaleddisplayWidth || drawPositionY >= scaleddisplayHeight || drawPositionX <= 0)
     		DrawScaledBitmap();
 		return drawingPoint;
 	}
@@ -93,8 +90,8 @@ public class Draw {
 	
 	private void DrawScaledBitmap()
 	{
-		scaleddisplayWidth = scaleddisplayWidth + 600;
-		scaleddisplayHeight = scaleddisplayHeight + 600;
+		scaleddisplayWidth = scaleddisplayWidth + 300;
+		scaleddisplayHeight = scaleddisplayHeight + 300;
 		paint.setARGB(ColorPicker.getAlpha(), ColorPicker.getRed(), ColorPicker.getGreen(), ColorPicker.getBlue());
 		scaledbitmap = Bitmap.createBitmap(scaleddisplayWidth, scaleddisplayHeight, Config.ARGB_8888);
 		MainActivity.getInstance().imageView.setImageBitmap(scaledbitmap);
@@ -113,7 +110,9 @@ public class Draw {
 	{
 		LocationData.mPositionX = 0;
     	LocationData.mPositionY = 0;
-    	positionMap.clear();
+    	scaleddisplayWidth = displayWidth;
+    	scaleddisplayHeight = displayHeight;
+    	coordinateList.clear();
     	bitmap.eraseColor(0);
         Paint paintBitmap = new Paint();
         paintBitmap.setColor(Color.WHITE);

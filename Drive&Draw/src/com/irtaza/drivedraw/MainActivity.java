@@ -1,5 +1,6 @@
 package com.irtaza.drivedraw;
 
+import orbotix.robot.base.ConfigureLocatorCommand;
 import orbotix.robot.base.Robot;
 import orbotix.sphero.Sphero;
 import orbotix.view.connection.SpheroConnectionView;
@@ -189,6 +190,7 @@ public class MainActivity extends Activity {
 			// mRobot.getCollisionControl().removeCollisionListener(mCollisionListener);
 			mRobot.getSensorControl().removeLocatorListener(locatordata.mlocatorListener);
 			// Disconnect Robot properly
+			ConfigureLocatorCommand.sendCommand(MainActivity.getInstance().mRobot,ConfigureLocatorCommand.ROTATE_WITH_CALIBRATE_FLAG_OFF, 0, 0, 0);
 			mRobot.disconnect();
 		}
 	}
