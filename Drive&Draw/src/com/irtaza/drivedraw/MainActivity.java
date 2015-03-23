@@ -91,6 +91,7 @@ public class MainActivity extends Activity {
 						// TODO Auto-generated method stub
 						mRobot = (Sphero) sphero;
 						mRobot.startCalibration();
+						mRobot.setColor(0, 255, 0);
 						mRobot.getCollisionControl().addCollisionListener(
 								collisiondata.mCollisionListener);
 						mRobot.getSensorControl().addLocatorListener(
