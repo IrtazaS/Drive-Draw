@@ -32,8 +32,7 @@ public class MainActivity extends Activity {
 	Display display;
 	SeekBar seekBarTail;
 	SeekBar seekBarDrive;
-	TextView velocityView;
-	TextView textPositionX, textPositionY, textCollisionX, textCollisionY, textHeading; 
+	TextView textPositionX, textPositionY, textGeneral; 
 	int displayWidth, displayHeight;
 	/** The Sphero Connection View */
 	private SpheroConnectionView mSpheroConnectionView;
@@ -49,18 +48,18 @@ public class MainActivity extends Activity {
 		findViewById(R.id.back_layout).requestFocus();
 		
 		mainactivity = this;
-		velocityView = (TextView)findViewById(R.id.speedView);
 		mSettingsActtivityShowing = false;
 		settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		
 		imageView = (ImageView)findViewById(R.id.imageView1);
 		seekBarDrive = (SeekBar)findViewById(R.id.seekBarDrive);
 		seekBarTail = (SeekBar)findViewById(R.id.seekBarTail);
-		textCollisionX = (TextView)findViewById(R.id.textViewCollisionX);
-		textCollisionY = (TextView)findViewById(R.id.textViewCollisionY);
+		textGeneral = (TextView)findViewById(R.id.textViewGeneral);
+		//textCollisionX = (TextView)findViewById(R.id.textViewCollisionX);
+		//textCollisionY = (TextView)findViewById(R.id.textViewCollisionY);
 		textPositionX = (TextView)findViewById(R.id.textViewPositionX);
 		textPositionY = (TextView)findViewById(R.id.textViewPositionY);
-		textHeading = (TextView)findViewById(R.id.textViewHeading);
+		//textHeading = (TextView)findViewById(R.id.textViewHeading);
 		
 		display = getWindowManager().getDefaultDisplay();
 		displayWidth = display.getWidth();

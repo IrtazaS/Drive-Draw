@@ -17,6 +17,7 @@
        android:layout_height="wrap_content"
        android:layout_alignParentBottom="true"
        android:layout_alignParentLeft="true"
+       android:thumb="@drawable/spheroball_drive"
        android:layout_marginBottom="16dp"
        android:max="10" />
 
@@ -26,8 +27,9 @@
        android:layout_height="wrap_content"
        android:layout_above="@+id/seekBarDrive"
        android:layout_alignParentLeft="true"
-       android:layout_toLeftOf="@+id/textViewHeading"
-       android:max="360" />
+       android:layout_alignRight="@+id/seekBarDrive"
+       android:max="360"
+       android:thumb="@drawable/spheroball_tail" />
 
    <TextView
        android:id="@+id/textViewPositionX"
@@ -36,17 +38,6 @@
        android:layout_alignParentBottom="true"
        android:layout_alignParentLeft="true"
        android:text="X: "
-       android:textAppearance="?android:attr/textAppearanceSmall" />
-
-   <TextView
-       android:id="@+id/textViewCollisionY"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignBaseline="@+id/textViewCollisionX"
-       android:layout_alignBottom="@+id/textViewCollisionX"
-       android:layout_alignRight="@+id/seekBarDrive"
-       android:layout_marginRight="42dp"
-       android:text="CY: "
        android:textAppearance="?android:attr/textAppearanceSmall" />
 
    <TextView
@@ -60,36 +51,6 @@
        android:text="Y: "
        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-   <TextView
-       android:id="@+id/textViewCollisionX"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignBaseline="@+id/textViewPositionY"
-       android:layout_alignBottom="@+id/textViewPositionY"
-       android:layout_marginRight="46dp"
-       android:layout_toLeftOf="@+id/textViewCollisionY"
-       android:text="CX: "
-       android:textAppearance="?android:attr/textAppearanceSmall" />
-
-   <TextView
-       android:id="@+id/textViewHeading"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignRight="@+id/textViewCollisionY"
-       android:layout_alignTop="@+id/seekBarTail"
-       android:text="H: "
-       android:textAppearance="?android:attr/textAppearanceSmall" />
-
-   <TextView
-       android:id="@+id/speedView"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignRight="@+id/seekBarDrive"
-       android:layout_alignTop="@+id/seekBarDrive"
-       android:layout_marginRight="21dp"
-       android:text=""
-       android:textAppearance="?android:attr/textAppearanceSmall" />
-
    <ImageView
        android:id="@+id/imageView1"
        android:layout_width="wrap_content"
@@ -98,7 +59,18 @@
        android:layout_alignParentLeft="true"
        android:layout_alignParentRight="true"
        android:layout_alignParentTop="true"
-       android:src="@drawable/canvas_background" />
+       android:src="@drawable/spherologo" />
+
+   <TextView
+       android:id="@+id/textViewGeneral"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBaseline="@+id/textViewPositionY"
+       android:layout_alignBottom="@+id/textViewPositionY"
+       android:layout_marginLeft="18dp"
+       android:layout_toRightOf="@+id/textViewPositionY"
+       android:text="Info"
+       android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
 

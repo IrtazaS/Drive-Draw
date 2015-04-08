@@ -20,6 +20,7 @@ public class Drive {
 			MainActivity.getInstance().mRobot.setBackLEDBrightness(0);
 			activatedrawing = false;
 			MainActivity.getInstance().mRobot.stop();
+			MainActivity.getInstance().textGeneral.setEnabled(false);
 
 		}
 
@@ -35,10 +36,10 @@ public class Drive {
 				boolean fromUser) {
 			MainActivity.getInstance().mRobot.setBackLEDBrightness(1);
 			seekBarProgress = seekBar.getProgress();
-			MainActivity.getInstance().velocityView.setText(String
-					.valueOf(velocity.getVelocity(seekBarProgress)));
 			MainActivity.getInstance().mRobot.drive(heading,
 					velocity.getVelocity(seekBarProgress));
+			MainActivity.getInstance().textGeneral.setEnabled(true);
+			MainActivity.getInstance().textGeneral.setText("Speed: " + progress);
 
 		}
 	};
@@ -48,12 +49,12 @@ public class Drive {
 		public void onStopTrackingTouch(SeekBar arg0) {
 			// TODO Auto-generated method stub
 			MainActivity.getInstance().mRobot.setBackLEDBrightness(0);
+			MainActivity.getInstance().textGeneral.setEnabled(false);
 
 		}
 
 		@Override
 		public void onStartTrackingTouch(SeekBar arg0) {
-			// TODO Auto-generated method stub
 
 		}
 
@@ -62,15 +63,19 @@ public class Drive {
 			// TODO Auto-generated method stub
 			MainActivity.getInstance().mRobot.setBackLEDBrightness(1);
 			heading = seekBar.getProgress();
-			MainActivity.getInstance().textHeading.setText("H: " + heading);
+			//MainActivity.getInstance().textHeading.setText("H: " + heading);
 			MainActivity.getInstance().mRobot.rotate(heading);
+			MainActivity.getInstance().textGeneral.setEnabled(true);
 			if (CollisionData.collisionheading != heading) {
-				MainActivity.getInstance().textHeading
-						.setTextColor(Color.BLACK);
+				MainActivity.getInstance().textGeneral.setText("Heading: " + arg1);
+				MainActivity.getInstance().textGeneral.setTextColor(Color.BLACK);
+				//MainActivity.getInstance().textHeading.setTextColor(Color.BLACK);
 				MainActivity.getInstance().seekBarDrive.setEnabled(true);
 			} else {
-				// seekBarDrive.setEnabled(false);
-				MainActivity.getInstance().textHeading.setTextColor(Color.RED);
+				MainActivity.getInstance().textGeneral.setText("Heading: " + arg1);
+				MainActivity.getInstance().textGeneral.setTextColor(Color.RED);
+				MainActivity.getInstance().seekBarDrive.setEnabled(false);
+				//MainActivity.getInstance().textHeading.setTextColor(Color.RED);
 			}
 			CollisionData.collisionhandled = true;
 

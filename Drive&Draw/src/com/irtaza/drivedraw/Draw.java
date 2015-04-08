@@ -46,8 +46,8 @@ public class Draw {
 		bitmap = Bitmap.createBitmap(displayWidth, displayHeight, Bitmap.Config.ARGB_8888);
 		//Log.i("Screensize", screenHeight +" "+ screenWidth + screenheightChopped);
 		canvas = new Canvas(bitmap);
-		canvas.translate(0,canvas.getHeight());   // reset where 0,0 is located
-		canvas.scale(1,-1);    // invert
+		//canvas.translate(0,canvas.getHeight());   // reset where 0,0 is located
+		//canvas.scale(1,-1);    // invert
 		MainActivity.getInstance().imageView.setImageBitmap(bitmap);
 	}
 	
@@ -66,6 +66,7 @@ public class Draw {
 		paint = new Paint();
 		paint.setARGB(ColorPicker.getAlpha(), ColorPicker.getRed(), ColorPicker.getGreen(), ColorPicker.getBlue());
 		drawingPoint = new PointF();
+		LocationData.mPositionY *= -1;
 		float drawPositionX = (LocationData.mPositionX) + (displayWidth/2);
 		float drawPositionY = (LocationData.mPositionY) + (displayHeight/2);
 		Log.i("DrawingParameter: ", "drawPositionX: " +  drawPositionX + "drawPositionY: "+drawPositionY + "scaleddisplaywidth: "+scaleddisplayWidth + "scaleddsplayheight: " + scaleddisplayHeight);
@@ -78,7 +79,7 @@ public class Draw {
 			PointF coordinates = new PointF(drawPositionX, drawPositionY);
 			coordinateList.add(coordinates);
 		}
-		if(drawPositionX >= scaleddisplayWidth || drawPositionY >= scaleddisplayHeight || drawPositionX <= 0)
+		if(drawPositionX >= scaleddisplayWidth || drawPositionY >= scaleddisplayHeight)
     		DrawScaledBitmap();
 		return drawingPoint;
 	}
@@ -90,6 +91,7 @@ public class Draw {
 		canvas.drawCircle(drawingPoint.x, drawingPoint.y, radius, collisionPaint);
 	}
 	
+	
 	private void DrawScaledBitmap()
 	{
 		scaleddisplayWidth = scaleddisplayWidth + (displayWidth/3);
@@ -98,11 +100,7 @@ public class Draw {
 		scaledbitmap = Bitmap.createBitmap(scaleddisplayWidth, scaleddisplayHeight, Config.ARGB_8888);
 		MainActivity.getInstance().imageView.setImageBitmap(scaledbitmap);
 		canvas.setBitmap(scaledbitmap);
-		
-//		for (Entry<Float, Float> entry : positionMap.entrySet()) {
-//			canvas.drawCircle(entry.getKey(), entry.getValue(), radius, paint);
-//		}
-		
+
 		for (PointF point : coordinateList) {
 			canvas.drawCircle(point.x, point.y, radius, paint);
 		}
@@ -128,6 +126,8 @@ public class Draw {
         scaledbitmap = null;
         canvas.drawColor(0);
         canvas.drawBitmap(bitmap, 0, 0, paintBitmap);
+        //canvas.translate(0,canvas.getHeight());   // reset where 0,0 is located
+		//canvas.scale(1,-1);    // invert
         MainActivity.getInstance().imageView.setImageBitmap(bitmap);
         ConfigureLocatorCommand.sendCommand(MainActivity.getInstance().mRobot,ConfigureLocatorCommand.ROTATE_WITH_CALIBRATE_FLAG_OFF, 0, 0, 0);
 	}

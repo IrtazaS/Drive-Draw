@@ -13,7 +13,8 @@
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-
+	<string name="pref_collision_sensitivity">Set Collision Sensitivity</string>
+	
     <string-array name="pref_example_list_titles">
         <item>Always</item>
         <item>When possible</item>
@@ -27,7 +28,7 @@
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_drawing">Drawing</string>
-    <string name="pref_stroke_width">Stroke width</string>
+    <string name="pref_stroke_width">Stroke Width</string>
 
     <string-array name="pref_stroke_width_entries">
         <item>10 dp</item>
@@ -43,16 +44,18 @@
         <item>40</item>
         <item>50</item>
     </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
+    <string-array name="pref_collision_entries">
+        <item>High Sensitivity</item>
+        <item>Medium Sensitivity</item>
+        <item>Low Sensitivity</item>
+    </string-array>
+    <string-array name="pref_collision_values">
+        <item>50</item>
+        <item>100</item>
+        <item>250</item>
     </string-array>
 
-    <string name="pref_stroke_color">Stroke color</string>
+    <string name="pref_stroke_color">Stroke Color</string>
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>

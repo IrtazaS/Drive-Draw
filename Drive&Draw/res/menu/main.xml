@@ -8,5 +8,5 @@
         android:title="@string/action_settings"/>
     
     <item android:id="@+id/action_sleep" android:title="Sleep" android:showAsAction="always" android:icon="@drawable/ic_action_zzz"></item>
-    <item android:id="@+id/action_calibrate" android:title="Cal" android:showAsAction="always"></item>
+    <item android:id="@+id/action_calibrate" android:title="Calibration" android:showAsAction="always" android:icon="@drawable/ic_action_image_filter_tilt_shift"></item>
 </menu>
