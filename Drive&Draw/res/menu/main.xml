@@ -1,12 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item android:id="@+id/action_refresh" android:icon="@drawable/ic_action_refresh" android:title="Refresh" android:showAsAction="always"></item>
+    <item android:id="@+id/action_refresh" android:icon="@drawable/ic_action_refresh_dark" android:title="Refresh" android:showAsAction="always"></item>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
     
-    <item android:id="@+id/action_sleep" android:title="Sleep" android:showAsAction="always"></item>
+    <item android:id="@+id/action_sleep" android:title="Sleep" android:showAsAction="always" android:icon="@drawable/ic_action_zzz"></item>
     <item android:id="@+id/action_calibrate" android:title="Cal" android:showAsAction="always"></item>
 </menu>
