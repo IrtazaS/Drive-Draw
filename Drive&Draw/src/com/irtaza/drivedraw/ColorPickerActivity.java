@@ -7,6 +7,8 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 
 public class ColorPickerActivity extends Activity {
@@ -20,6 +22,7 @@ public class ColorPickerActivity extends Activity {
 	SeekBar seekBarBlue;
 	SeekBar seekBarAlpha;
 	ColorPicker colorpicker;
+	static ImageView colorspheroImage;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +30,16 @@ public class ColorPickerActivity extends Activity {
 		setContentView(R.layout.activity_color_picker);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		colorpicker = new ColorPicker();
-		colorButton = (Button) findViewById(R.id.buttonColor);
+		//colorButton = (Button) findViewById(R.id.buttonColor);
+		colorspheroImage = (ImageView)findViewById(R.id.imageView1);
 
 		alpha = ColorPicker.getAlpha();
 		red = ColorPicker.getRed();
 		green = ColorPicker.getGreen();
 		blue = ColorPicker.getBlue();
 		
-		colorButton.setBackgroundColor(Color.argb(alpha,red, green, blue));
+		//colorButton.setBackgroundColor(Color.argb(alpha,red, green, blue));
+		colorspheroImage.setBackgroundColor(Color.argb(alpha, red, green, blue));
 		
 		seekBarAlpha = (SeekBar)findViewById(R.id.seekBarAlpha);
 		seekBarRed = (SeekBar) findViewById(R.id.seekBarColorRed);

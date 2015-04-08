@@ -2,6 +2,7 @@ package com.irtaza.drivedraw;
 
 import orbotix.robot.base.ConfigureLocatorCommand;
 import orbotix.robot.base.Robot;
+import orbotix.robot.base.SetHeadingCommand;
 import orbotix.sphero.Sphero;
 import orbotix.view.connection.SpheroConnectionView;
 import android.app.Activity;
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
 
 	static MainActivity mainactivity;
 	private boolean mSettingsActtivityShowing;
+	private boolean mStabilization = true;
 	SharedPreferences settings;
 	ImageView imageView;
 	Sphero mRobot;
@@ -61,8 +63,8 @@ public class MainActivity extends Activity {
 		textHeading = (TextView)findViewById(R.id.textViewHeading);
 		
 		display = getWindowManager().getDefaultDisplay();
-		displayWidth = MainActivity.getInstance().display.getWidth();
-		displayHeight = MainActivity.getInstance().display.getHeight();
+		displayWidth = display.getWidth();
+		displayHeight = display.getHeight();
 		displayHeight = displayHeight / 2;
 		
 		draw = new Draw();
@@ -144,6 +146,28 @@ public class MainActivity extends Activity {
 		        	Intent settingactivity = new Intent(this, SettingsActivity.class);
 		        	startActivity(settingactivity);
 				} catch (Exception e) {
+					connectionMessageBox();
+				}
+	        	return true;
+	        case R.id.action_calibrate:
+	        	try{
+	        		if(mStabilization)
+	        		{
+	        			mStabilization=false;
+	        			mRobot.enableStabilization(false);
+	        			mRobot.setBackLEDBrightness(1.0f);
+	        		}
+	        		else
+	        		{
+	        			mStabilization=true;
+	        			mRobot.enableStabilization(true);
+	        			mRobot.setBackLEDBrightness(0f);
+	        		}
+	        		SetHeadingCommand.sendCommand(mRobot, 0);
+	        		seekBarTail.setProgress(0);
+	        		Drive.heading=0;
+	        	}
+	        	catch (Exception e) {
 					connectionMessageBox();
 				}
 	        default:

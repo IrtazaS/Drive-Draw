@@ -26,7 +26,9 @@ public class ColorPicker {
 		@Override
 		public void onProgressChanged(SeekBar seekbaralpha, int progressAlpha, boolean arg2) {
 			alpha = progressAlpha;
-			ColorPickerActivity.colorButton.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			//ColorPickerActivity.colorButton.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			ColorPickerActivity.colorspheroImage.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			MainActivity.getInstance().mRobot.setColor(red, green, blue);
 		}
 	};
 	public OnSeekBarChangeListener seekBarRedListener = new OnSeekBarChangeListener() {
@@ -46,7 +48,9 @@ public class ColorPicker {
 		public void onProgressChanged(SeekBar seekbarred, int progressRed, boolean arg2) {
 			// TODO Auto-generated method stub
 			red = progressRed;
-			ColorPickerActivity.colorButton.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			//ColorPickerActivity.colorButton.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			ColorPickerActivity.colorspheroImage.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			MainActivity.getInstance().mRobot.setColor(red, green, blue);
 		}
 	};
 	
@@ -68,7 +72,9 @@ public class ColorPicker {
 		public void onProgressChanged(SeekBar seekbargreen, int progressGreen,
 				boolean fromUser) {
 			green = progressGreen;
-			ColorPickerActivity.colorButton.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			//ColorPickerActivity.colorButton.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			ColorPickerActivity.colorspheroImage.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			MainActivity.getInstance().mRobot.setColor(red, green, blue);
 			
 		}
 	};
@@ -92,7 +98,9 @@ public class ColorPicker {
 				boolean fromUser) {
 			
 			blue = progressBlue;
-			ColorPickerActivity.colorButton.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			//ColorPickerActivity.colorButton.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			ColorPickerActivity.colorspheroImage.setBackgroundColor(Color.argb(alpha, red, green, blue));
+			MainActivity.getInstance().mRobot.setColor(red, green, blue);
 		}
 	};
 	

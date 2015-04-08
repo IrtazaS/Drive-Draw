@@ -46,6 +46,8 @@ public class Draw {
 		bitmap = Bitmap.createBitmap(displayWidth, displayHeight, Bitmap.Config.ARGB_8888);
 		//Log.i("Screensize", screenHeight +" "+ screenWidth + screenheightChopped);
 		canvas = new Canvas(bitmap);
+		canvas.translate(0,canvas.getHeight());   // reset where 0,0 is located
+		canvas.scale(1,-1);    // invert
 		MainActivity.getInstance().imageView.setImageBitmap(bitmap);
 	}
 	
@@ -90,8 +92,8 @@ public class Draw {
 	
 	private void DrawScaledBitmap()
 	{
-		scaleddisplayWidth = scaleddisplayWidth + 300;
-		scaleddisplayHeight = scaleddisplayHeight + 300;
+		scaleddisplayWidth = scaleddisplayWidth + (displayWidth/3);
+		scaleddisplayHeight = scaleddisplayHeight + (displayWidth/3);
 		paint.setARGB(ColorPicker.getAlpha(), ColorPicker.getRed(), ColorPicker.getGreen(), ColorPicker.getBlue());
 		scaledbitmap = Bitmap.createBitmap(scaleddisplayWidth, scaleddisplayHeight, Config.ARGB_8888);
 		MainActivity.getInstance().imageView.setImageBitmap(scaledbitmap);

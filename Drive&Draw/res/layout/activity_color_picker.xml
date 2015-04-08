@@ -67,18 +67,11 @@
         android:layout_height="wrap_content" 
         android:layout_marginTop="15dp"
         android:max="255"/>
-<RelativeLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonColor"
-        android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:clickable="false" />
-
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/spherologo" />
 
 </LinearLayout>

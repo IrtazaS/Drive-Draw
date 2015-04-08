@@ -29,6 +29,13 @@
     <string name="pref_drawing">Drawing</string>
     <string name="pref_stroke_width">Stroke width</string>
 
+    <string-array name="pref_stroke_width_entries">
+        <item>10 dp</item>
+        <item>20 dp</item>
+        <item>30 dp</item>
+        <item>40 dp</item>
+        <item>50 dp</item>
+    </string-array>
     <string-array name="pref_stroke_width_values">
         <item>10</item>
         <item>20</item>
