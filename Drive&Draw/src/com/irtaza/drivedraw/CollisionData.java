@@ -9,6 +9,7 @@ import android.graphics.Paint;
 public class CollisionData {
 
 	static float collisionheading;
+	static float collisionX, collisionY;
 	static boolean collisionhandled = true;
 	int collisionSensitivity = 100;
 	public CollisionListener mCollisionListener = new CollisionListener() {
@@ -26,6 +27,8 @@ public class CollisionData {
                 MainActivity.getInstance().mRobot.stop();
                 MainActivity.getInstance().draw.DrawCollision();
                 collisionhandled = false;
+                collisionX = LocationData.mPositionX;
+                collisionY = LocationData.mPositionY;
                 MainActivity.getInstance().seekBarDrive.setEnabled(false);
                 MainActivity.getInstance().textGeneral.setEnabled(true);
                 MainActivity.getInstance().textGeneral.setTextColor(Color.RED);
@@ -33,7 +36,10 @@ public class CollisionData {
                 collisionheading = Drive.heading;
             }
 			else
-				MainActivity.getInstance().mRobot.setColor(0, 255, 0);
+			{
+				collisionhandled = true;
+				MainActivity.getInstance().mRobot.setColor(ColorPicker.getRed(), ColorPicker.getGreen(), ColorPicker.getBlue());
+			}
 		}
 	};
 }

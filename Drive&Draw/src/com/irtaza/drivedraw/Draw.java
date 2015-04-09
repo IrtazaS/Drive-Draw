@@ -33,7 +33,7 @@ public class Draw {
 	public Draw()
 	{
 		scaledbitmap = null;
-		radius = Integer.parseInt(MainActivity.getInstance().settings.getString("stroke_width", "40"));
+		radius = Integer.parseInt(MainActivity.getInstance().settings.getString("stroke_width", "10"));
 
 		alpha = 110;
 		displayWidth = MainActivity.getInstance().displayWidth;

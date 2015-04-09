@@ -6,7 +6,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class ColorPicker {
 
-	static int red, blue, green = 0;
+	static int red, blue = 0;
+	static int green = 255;
 	static int alpha = 110;
 	
 	public OnSeekBarChangeListener seekBarAlphaListener = new OnSeekBarChangeListener() {

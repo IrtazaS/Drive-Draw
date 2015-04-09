@@ -77,7 +77,12 @@ public class Drive {
 				MainActivity.getInstance().seekBarDrive.setEnabled(false);
 				//MainActivity.getInstance().textHeading.setTextColor(Color.RED);
 			}
-			CollisionData.collisionhandled = true;
+			
+			if(CollisionData.collisionX != LocationData.mPositionX || CollisionData.collisionY != LocationData.mPositionY)
+			{
+				CollisionData.collisionheading = 361;
+				CollisionData.collisionhandled = true;
+			}
 
 		}
 	};

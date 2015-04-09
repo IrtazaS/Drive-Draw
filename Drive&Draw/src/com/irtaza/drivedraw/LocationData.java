@@ -31,8 +31,7 @@ public class LocationData {
 				MainActivity.getInstance().textPositionY.setText("Y: "
 						+ mPositionY);
 				// drawView.invalidate();
-				if (CollisionData.collisionhandled
-						|| !CollisionData.collisionhandled) {
+				if (CollisionData.collisionhandled) {
 					MainActivity.getInstance().draw.SetPoints(mPositionX, mPositionY);
 					MainActivity.getInstance().draw.DrawMap();
 				}

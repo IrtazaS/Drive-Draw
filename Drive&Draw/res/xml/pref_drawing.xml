@@ -6,7 +6,7 @@
     -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
     <ListPreference
-        android:defaultValue="40"
+        android:defaultValue="10"
         android:dialogTitle="Set Stroke Width"
         android:entries="@array/pref_stroke_width_entries"
         android:entryValues="@array/pref_stroke_width_values"
@@ -15,6 +15,14 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_stroke_width" />
 
+      <!--
+         This preference simply launches an intent when selected. Use this UI sparingly, per
+         design guidelines.
+    -->
+    <Preference android:title="@string/pref_stroke_color" >
+        <intent android:action="android.intent.action.Color_Setting" />
+    </Preference>
+    
     <ListPreference 
         android:defaultValue="100"
         android:dialogTitle="Set collision sensitivity"
@@ -24,12 +32,6 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:title="@string/pref_collision_sensitivity"/>
-    <!--
-         This preference simply launches an intent when selected. Use this UI sparingly, per
-         design guidelines.
-    -->
-    <Preference android:title="@string/pref_stroke_color" >
-        <intent android:action="android.intent.action.Color_Setting" />
-    </Preference>
+  
 
 </PreferenceScreen>
