@@ -140,11 +140,12 @@ public class MainActivity extends Activity {
 				}
 	        	return true;
 	        case R.id.action_settings:
-	        	try {
+	        	if(mRobot != null)
+	        	{
 	        		mSettingsActtivityShowing = true;
 		        	Intent settingactivity = new Intent(this, SettingsActivity.class);
 		        	startActivity(settingactivity);
-				} catch (Exception e) {
+				} else {
 					connectionMessageBox();
 				}
 	        	return true;
