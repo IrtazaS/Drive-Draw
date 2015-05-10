@@ -1,10 +1,16 @@
 package com.irtaza.drivedraw;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+/**
+ * 
+ * @author irtaza Die Klasse Drive ist implementiert alle Steuerungselemente für Sphero.
+ * Diese beinhaltet das Fahren, sowie die Lenkung von Sphero. Bei einer Kollision wird das
+ * Fahren deaktiviert. Der Benutzer muss die Position ändern, um das Fahren zu reaktivieren.
+ *
+ */
 public class Drive {
 
 	boolean activatedrawing;
@@ -16,7 +22,6 @@ public class Drive {
 
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
-			// TODO Auto-generated method stub
 			MainActivity.getInstance().mRobot.setBackLEDBrightness(0);
 			activatedrawing = false;
 			MainActivity.getInstance().mRobot.stop();
@@ -43,11 +48,10 @@ public class Drive {
 
 		}
 	};
-	public OnSeekBarChangeListener mseekBarTailListener = new OnSeekBarChangeListener() {
+	public OnSeekBarChangeListener mSeekBarTailListener = new OnSeekBarChangeListener() {
 
 		@Override
 		public void onStopTrackingTouch(SeekBar arg0) {
-			// TODO Auto-generated method stub
 			MainActivity.getInstance().mRobot.setBackLEDBrightness(0);
 			MainActivity.getInstance().textGeneral.setEnabled(false);
 
@@ -60,22 +64,18 @@ public class Drive {
 
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int arg1, boolean arg2) {
-			// TODO Auto-generated method stub
 			MainActivity.getInstance().mRobot.setBackLEDBrightness(1);
 			heading = seekBar.getProgress();
-			//MainActivity.getInstance().textHeading.setText("H: " + heading);
 			MainActivity.getInstance().mRobot.rotate(heading);
 			MainActivity.getInstance().textGeneral.setEnabled(true);
 			if (CollisionData.collisionheading != heading) {
 				MainActivity.getInstance().textGeneral.setText("Heading: " + arg1);
 				MainActivity.getInstance().textGeneral.setTextColor(Color.BLACK);
-				//MainActivity.getInstance().textHeading.setTextColor(Color.BLACK);
 				MainActivity.getInstance().seekBarDrive.setEnabled(true);
 			} else {
 				MainActivity.getInstance().textGeneral.setText("Heading: " + arg1);
 				MainActivity.getInstance().textGeneral.setTextColor(Color.RED);
 				MainActivity.getInstance().seekBarDrive.setEnabled(false);
-				//MainActivity.getInstance().textHeading.setTextColor(Color.RED);
 			}
 			
 			if(CollisionData.collisionX != LocationData.mPositionX || CollisionData.collisionY != LocationData.mPositionY)

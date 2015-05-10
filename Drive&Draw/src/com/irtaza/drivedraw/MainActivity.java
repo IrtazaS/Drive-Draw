@@ -10,7 +10,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Display;
@@ -21,6 +20,17 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author irtaza 
+ * Drive & Draw ist eine Kartierungs-App für Sphero, mit der eine Echtzeit Kartenerstellung
+ * mittels Posiotnserkennung ermöglicht wird. Hierfür wird der LocationListener verwendet, der
+ * bei jeder Bewegung von Sphero die aktuelle Position liefert. Diese Bewegungen werden auf einer Zeichenfläche bzw.
+ * auf einem Canvas gezeichnet. Des Weiteren wird die Kollisionserkennung genutzt, damit Hindernisse in der Umgebung 
+ * erkannt werden. Sobald Sphero gegen ein Hindernis stößt, wird die Stelle auf der Zeichenfläche rot markiert und dem Benutzer
+ * die Kollisionserkennung mitgeteilt.
+ *
+ */
 public class MainActivity extends Activity {
 
 	static MainActivity mainactivity;
@@ -52,14 +62,13 @@ public class MainActivity extends Activity {
 		settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		
 		imageView = (ImageView)findViewById(R.id.imageView1);
+		
 		seekBarDrive = (SeekBar)findViewById(R.id.seekBarDrive);
 		seekBarTail = (SeekBar)findViewById(R.id.seekBarTail);
+		
 		textGeneral = (TextView)findViewById(R.id.textViewGeneral);
-		//textCollisionX = (TextView)findViewById(R.id.textViewCollisionX);
-		//textCollisionY = (TextView)findViewById(R.id.textViewCollisionY);
 		textPositionX = (TextView)findViewById(R.id.textViewPositionX);
 		textPositionY = (TextView)findViewById(R.id.textViewPositionY);
-		//textHeading = (TextView)findViewById(R.id.textViewHeading);
 		
 		display = getWindowManager().getDefaultDisplay();
 		displayWidth = display.getWidth();
@@ -89,7 +98,6 @@ public class MainActivity extends Activity {
 
 					@Override
 					public void onConnected(Robot sphero) {
-						// TODO Auto-generated method stub
 						mRobot = (Sphero) sphero;
 						mRobot.startCalibration();
 						mRobot.setColor(0, 255, 0);
@@ -100,14 +108,11 @@ public class MainActivity extends Activity {
 						mRobot.getCollisionControl().startDetection(45, 45,
 								100, 100, 100);
 						mRobot.stopCalibration(true);
-//						drawView = new DrawView(MainActivity.this);
-//		        		drawView.setBackgroundColor(Color.WHITE);
-//		        		setContentView(drawView);
 
 					}
 				});
 		seekBarDrive.setOnSeekBarChangeListener(drive.mSeekBarDriveListener);
-		seekBarTail.setOnSeekBarChangeListener(drive.mseekBarTailListener);
+		seekBarTail.setOnSeekBarChangeListener(drive.mSeekBarTailListener);
 	}
 	
 	@Override
@@ -212,7 +217,6 @@ public class MainActivity extends Activity {
 		if (mRobot != null) {
 			mRobot.getCollisionControl().stopDetection();
 			// Remove async data listener
-			// mRobot.getCollisionControl().removeCollisionListener(mCollisionListener);
 			mRobot.getSensorControl().removeLocatorListener(locatordata.mlocatorListener);
 			// Disconnect Robot properly
 			ConfigureLocatorCommand.sendCommand(MainActivity.getInstance().mRobot,ConfigureLocatorCommand.ROTATE_WITH_CALIBRATE_FLAG_OFF, 0, 0, 0);

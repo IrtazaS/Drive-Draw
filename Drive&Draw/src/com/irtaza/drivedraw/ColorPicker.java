@@ -4,6 +4,12 @@ import android.graphics.Color;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+/**
+ * 
+ * @author irtaza Die Klasse ColorPicker liefert RGB Werte für Spheros RGB-LED und 
+ * für die Farbe des Zeichenstifts.
+ *
+ */
 public class ColorPicker {
 
 	static int red, blue = 0;

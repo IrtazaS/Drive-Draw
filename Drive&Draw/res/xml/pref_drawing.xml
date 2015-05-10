@@ -23,6 +23,13 @@
         <intent android:action="android.intent.action.Color_Setting" />
     </Preference>
     
+    <CheckBoxPreference 
+        android:title = "Collision Detection"
+        android:defaultValue="true"
+        android:summary = "Activate/Deactivate Collision Detection"
+        android:key = "pref_toggle_collision_detection"
+        />
+    
     <ListPreference 
         android:defaultValue="100"
         android:dialogTitle="Set collision sensitivity"
@@ -31,6 +38,7 @@
         android:key="collision_sensitivity"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
+        android:dependency="pref_toggle_collision_detection"
         android:title="@string/pref_collision_sensitivity"/>
   
 

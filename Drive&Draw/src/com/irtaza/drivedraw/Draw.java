@@ -1,22 +1,23 @@
 package com.irtaza.drivedraw;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
 import orbotix.robot.base.ConfigureLocatorCommand;
 
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Bitmap.Config;
-import android.graphics.Point;
 import android.graphics.PointF;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
+/**
+ * 
+ * @author irtaza Die Klasse Draw zeichnet einen Bitmap mit einem Canvas (Zeichenfläche), auf der die Kartierung
+ * erfolgt. Dabei wird Spheros Position auf der Zeichenfläche gezeichnet.
+ * Liegt die Position außerhalb der Zeichenfläche, so wird die Zeichenfläche vergrößert.
+ *
+ */
 public class Draw {
 	
 	Canvas canvas;
@@ -44,23 +45,12 @@ public class Draw {
 		coordinateList = new ArrayList<PointF>();
 		
 		bitmap = Bitmap.createBitmap(displayWidth, displayHeight, Bitmap.Config.ARGB_8888);
-		//Log.i("Screensize", screenHeight +" "+ screenWidth + screenheightChopped);
 		canvas = new Canvas(bitmap);
 		//canvas.translate(0,canvas.getHeight());   // reset where 0,0 is located
 		//canvas.scale(1,-1);    // invert
 		MainActivity.getInstance().imageView.setImageBitmap(bitmap);
 	}
 	
-	public void SetPoints(float x, float y)
-	{
-		this.mPositionX = x;
-		this.mPositionY = y;
-	}
-	public PointF GetPoints()
-	{
-		PointF points = new PointF(mPositionX, mPositionY);
-		return points;
-	}
 	public PointF DrawMap()
 	{
 		paint = new Paint();
@@ -120,7 +110,6 @@ public class Draw {
         {
         	scaledbitmap.eraseColor(0);
         	bitmap = Bitmap.createBitmap(displayWidth, displayHeight, Bitmap.Config.ARGB_8888);
-    		//Log.i("Screensize", screenHeight +" "+ screenWidth + screenheightChopped);
     		canvas = new Canvas(bitmap);
         }
         scaledbitmap = null;
