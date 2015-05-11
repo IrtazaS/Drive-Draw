@@ -175,6 +175,10 @@ public class MainActivity extends Activity {
 	        	catch (Exception e) {
 					connectionMessageBox();
 				}
+	        	return true;
+	        case R.id.action_about:
+	        	Intent aboutactivity = new Intent (this, AboutActivity.class);
+	        	startActivity(aboutactivity);
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

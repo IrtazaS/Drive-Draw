@@ -6,6 +6,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_color_picker">Color</string>
     <string name="action_about">About</string>
-    <string name="title_activity_about">AboutActivity</string>
+    <string name="about_version">Version: 1.0\nCopyright &#169;: Irtaza Syed</string>
+    <string name="about_app">\nDrive &amp; Draw is an App for Sphero which allows you to control your Sphero Robot.\nThe movements of Sphero are drawn on a surface. This allows you to create a 2D-Map of a surface.\nThe feature for collisiondetection can be used for an authentic creation of the 2D-Map.\nThe drawing and Spheros LED can be customized with an included color picker.\nPlease report any issues or suggestion at the following address:\nirtaza.com@gmail.com</string>
+    <string name="title_activity_about">About Drive &amp; Draw</string>
 
 </resources>

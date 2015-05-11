@@ -1,31 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.irtaza.drivedraw.AboutActivity" >
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_launcher" />
+    
+    <TextView
+       android:id="@+id/textViewDrive"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/app_name"
+       android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="16dp"
-        android:ems="10" >
+     <TextView
+       android:id="@+id/textViewVersion"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/about_version"
+       android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+     <TextView
+       android:id="@+id/textViewAbout"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/about_app"
+       android:textAppearance="?android:attr/textAppearanceMedium" />
+    
 
-        <requestFocus />
-    </EditText>
-
-</RelativeLayout>
+</LinearLayout>
+</ScrollView>
